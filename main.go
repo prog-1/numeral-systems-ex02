@@ -19,7 +19,15 @@ func checkBase(base int) bool {
 	}
 	return true
 }
-func UIforEmptyMain() {
+func checkNum(num string, fromBase int) bool {
+	for _, r := range num {
+		if byte(r) > base36[fromBase] { // is there a way to check if string is empty
+			return false
+		}
+	}
+	return true
+}
+func UIforEmptiness() {
 	for {
 		fmt.Println(`Choose an action:
 		1) Convert number to base 10
@@ -35,7 +43,8 @@ func UIforEmptyMain() {
 			fmt.Print("Enter base for number you have already entered: ")
 			fmt.Scan(&fromBase)
 			check := checkBase(fromBase)
-			if check == true {
+			chhecknum := checkNum(num, fromBase)
+			if check && chhecknum {
 				ans1 := toBase10(num, fromBase)
 				fmt.Println(ans1)
 			} else {
@@ -49,7 +58,7 @@ func UIforEmptyMain() {
 			fmt.Print("Enter base in which you want to convert number")
 			fmt.Scan(&toBase)
 			check := checkBase(toBase)
-			if check == true {
+			if check {
 				ans := fromBase10(num, toBase)
 				fmt.Println(ans)
 			} else {
@@ -63,5 +72,5 @@ func UIforEmptyMain() {
 	}
 }
 func main() {
-	UIforEmptyMain()
+	UIforEmptiness()
 }
