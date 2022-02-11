@@ -16,7 +16,7 @@
 
 2. Write a program that converts a number in base 10 to a number in a given base B (`2 <= B <= 36`).
 
-   Write the following function: `func fromBase10(num int, toBase int) int`. Write tests for the function.
+   Write the following function: `func fromBase10(num int, toBase int) string`. Write tests for the function.
    
       Test examples:
  
