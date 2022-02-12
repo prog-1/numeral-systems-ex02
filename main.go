@@ -10,23 +10,23 @@ import (
 func Isletter(b byte) bool {
 	return b >= 65
 }
-func tobase10(s string, p int) (a uint64) {
+func tobase10(s string, p int) (a int) {
 	c := 1
 
 	switch p > 0 {
 	case (p <= 10):
 		for i := len(s) - 1; i >= 0; i-- {
-			a = a + uint64((int(s[i])-48)*c)
+			a = a + int((s[i])-48)*c
 			c = c * p
 		}
 
 	case p > 10:
 		for i := len(s) - 1; i >= 0; i-- {
 			if !Isletter(s[i]) {
-				a = a + uint64((int(s[i])-48)*c)
+				a = a + int((s[i])-48)*c
 				c = c * p
 			} else {
-				a = a + uint64((int(s[i])-55)*c)
+				a = a + int((s[i])-55)*c
 				c = c * p
 
 			}
@@ -65,7 +65,6 @@ func fromBase10(n int, k int) string {
 			v = 1
 			for tmp2 = 1; n > v*(tmp2); tmp2++ {
 				fmt.Println("2  ", v*tmp2)
-
 			}
 			var h rune
 			if tmp2 >= 10 {
