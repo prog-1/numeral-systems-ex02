@@ -1,11 +1,41 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math"
-	"time"
+	"os"
 )
 
+func Isletter(b byte) bool {
+	return b >= 65
+}
+func tobase10(s string, p int) (a uint64) {
+	c := 1
+
+	switch p > 0 {
+	case (p <= 10):
+		for i := len(s) - 1; i >= 0; i-- {
+			a = a + uint64((int(s[i])-48)*c)
+			c = c * p
+		}
+
+	case p > 10:
+		for i := len(s) - 1; i >= 0; i-- {
+			if !Isletter(s[i]) {
+				a = a + uint64((int(s[i])-48)*c)
+				c = c * p
+			} else {
+				a = a + uint64((int(s[i])-55)*c)
+				c = c * p
+
+			}
+		}
+
+	}
+	return a
+
+}
 func decimalToBinary(num int) (r []rune) {
 	var binary []int
 
@@ -49,7 +79,6 @@ func fromBase10(n int, k int) string {
 		for n > int(math.Pow(float64(k), float64(tmp))) {
 			v = int(math.Pow(float64(k), float64(tmp)))
 			fmt.Println(v)
-			time.Sleep(1 * time.Second)
 			tmp++
 		}
 		for tmp2 = 1; n > v*(tmp2+1); {
@@ -71,12 +100,40 @@ func fromBase10(n int, k int) string {
 	}
 	return string(a)
 }
+func menu() int {
+	fmt.Println(`Please choose you action:
+1) frombase10
+2) tobase10
+3) Stop programm 
+Enter number(1-3):`)
+	var a uint
+	fmt.Scan(&a)
+	switch a {
+	case 1:
+		fmt.Println("enter number to convert:")
+		var n int
+		var k int
+		fmt.Scanln(&n)
+		fmt.Print("Enter toBase: ")
+		fmt.Scanln(&k)
+		fmt.Println(fromBase10(n, k))
+	case 2:
+		var k int
+		fmt.Println("enter number to convert:")
+		scanner := bufio.NewScanner(os.Stdin)
+		scanner.Scan()
+		s := scanner.Text()
+		fmt.Println("Enter base of your number: ")
+		fmt.Scanln(&k)
+		fmt.Println(tobase10(s, k))
+	case 3:
+		return 4
+	default:
+		fmt.Println("Incorect value")
+
+	}
+	return 0
+}
 func main() {
-	fmt.Print("enter number:")
-	var n int
-	var k int
-	fmt.Scanln(&n)
-	fmt.Print("Enter P: ")
-	fmt.Scanln(&k)
-	fmt.Println(fromBase10(n, k))
+	menu()
 }
