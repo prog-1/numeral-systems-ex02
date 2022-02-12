@@ -26,6 +26,9 @@ func findStartpoint(num int, base int) (power int) {
 }
 
 func fromBase10(num int, toBase int) (result string) {
+	if num == 0 {
+		return "0"
+	}
 	fmt.Println(findStartpoint(num, toBase))
 	for power := findStartpoint(num, toBase); power >= 0; power-- {
 		devideBy := int(math.Pow(float64(toBase), float64(power)))
