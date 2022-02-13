@@ -33,6 +33,7 @@ func TestFromBase10(t *testing.T) {
 		want   string
 	}{
 		{number: 0, toBase: 6, want: "0"},
+		{number: 2, toBase: 2, want: "10"},
 		{number: 1, toBase: 14, want: "1"},
 		{number: 123, toBase: 10, want: "123"},
 		{number: 61, toBase: 2, want: "111101"},

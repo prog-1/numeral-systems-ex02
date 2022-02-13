@@ -38,7 +38,7 @@ func fromBase10(num int, toBase int) string {
 	var x float64
 	var number string
 	digitsInNumber := 1
-	for ; x < float64(num); digitsInNumber++ {
+	for ; x <= float64(num); digitsInNumber++ {
 		x = math.Pow(float64(toBase), float64(digitsInNumber))
 	}
 	digitsInNumber--
