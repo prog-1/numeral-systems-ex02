@@ -21,11 +21,11 @@ func fromBase10(num int, toBase int) string {
 				l = l + int(math.Pow(float64(toBase), float64(power)))
 				times++
 			} else {
-				if toBase >= 10 {
-					baseB = baseB + string(base36[times])
-				} else {
-					baseB = baseB + fmt.Sprint(times)
-				}
+				// if toBase >= 10 {
+				baseB = baseB + string(base36[times]) // it works like that too
+				// } else {
+				//	   baseB = baseB + fmt.Sprint(times)
+				// }
 				times = 0
 				num = num - (l - int(math.Pow(float64(toBase), float64(power)))) // because we have an extra "int(math.Pow(float64(toBase), float64(power)))" here
 				power--
