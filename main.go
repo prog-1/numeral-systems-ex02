@@ -26,7 +26,7 @@ func mainMenu() (choice int) {
 	return choice
 }
 
-const dictionary = "0123456789abcdefghijklmnopqrstuvwxyz"
+const dictionary = "0123456789abcdefghijklmnopqrstuvwxyz" // from 1 homework
 
 func toBase10(num string, fromBase int) int {}
 
