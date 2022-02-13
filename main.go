@@ -3,15 +3,18 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
 
-const base36 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 func toBase10(num string, fromBase int) int {
-	return 0
+	ans, _ := strconv.ParseInt(num, fromBase, 0)
+	return int(ans)
 }
-func fromBase10(num int, toBase int) int {
-	return 0
+
+func fromBase10(num int, toBase int) string { // I tried to understand how this function works, but its too dificult, there is lot of work with bits
+	return strconv.FormatInt(int64(num), toBase)
 }
 func checkBase(base int) bool {
 	if base < 2 || base > 36 {
@@ -21,7 +24,7 @@ func checkBase(base int) bool {
 }
 func checkNum(num string, fromBase int) bool {
 	for _, r := range num {
-		if byte(r) > base36[fromBase] { // is there a way to check if string is empty
+		if byte(r) > digits[fromBase] { // is there a way to check if string is empty
 			return false
 		}
 	}
@@ -55,7 +58,7 @@ func UIforEmptiness() {
 			fmt.Print("Enter number: ")
 			fmt.Scan(&num)
 			var toBase int
-			fmt.Print("Enter base in which you want to convert number")
+			fmt.Print("Enter base in which you want to convert number: ")
 			fmt.Scan(&toBase)
 			check := checkBase(toBase)
 			if check {
