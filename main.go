@@ -1,14 +1,32 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+	"strings"
+)
 
 func main() {
 	for {
 		choice := mainMenu()
 		if choice == 1 {
-			toBase10()
+			fmt.Println("Enter the number:")
+			var num string
+			fmt.Scan(&num)
+			fmt.Println("Enter the base B:")
+			var b int
+			fmt.Scan(&b)
+			fmt.Println("Converted number is", toBase10(num, b))
+			break
 		} else if choice == 2 {
-			fromBase10()
+			fmt.Println("Enter the number:")
+			var num int
+			fmt.Scan(&num)
+			fmt.Println("Enter the base B:")
+			var b int
+			fmt.Scan(&b)
+			fmt.Println("Converted number is", fromBase10(num, b))
+			break
 		} else if choice == 3 {
 			break
 		} else {
@@ -28,6 +46,15 @@ func mainMenu() (choice int) {
 
 const dictionary = "0123456789abcdefghijklmnopqrstuvwxyz" // from 1 homework
 
-func toBase10(num string, fromBase int) int {}
+func toBase10(num string, fromBase int) (v int) {
+	for i := 0; i <= len(num)-1; i++ {
+		number := strings.Index(dictionary, string(num[i]))
+		//string.Index --> https://pkg.go.dev/strings#Index
+		v += number * int(math.Pow(float64(fromBase), float64(len(num)-1-i)))
+	}
+	return v
+}
 
-func fromBase10(num int, toBase int) string {}
+func fromBase10(num int, toBase int) string {
+	
+}
