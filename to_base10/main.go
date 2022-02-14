@@ -13,9 +13,9 @@ func toBase10(num string, fromBase int) int {
 		for _, v := range num {
 			if strings.Contains(base36[:fromBase], string(v)) {
 				if '0' <= v && v <= '9' {
-					c = int(v) - 48
+					c = int(v) - '0' // '0' = 48
 				} else if 'A' <= v && v <= 'Z' {
-					c = int(v) - 55
+					c = int(v) - '7' // '7' = 55
 				}
 				base10 = base10 + c*int(math.Pow(float64(fromBase), float64(len(num)-1-i)))
 				i++

@@ -5,6 +5,10 @@ import (
 	"math"
 )
 
+func CurrentPower(toBase int, power int) int {
+	return int(math.Pow(float64(toBase), float64(power)))
+}
+
 func fromBase10(num int, toBase int) string {
 	var baseB string
 	if 2 <= toBase && toBase <= 36 {
@@ -13,12 +17,12 @@ func fromBase10(num int, toBase int) string {
 			power++
 		}
 
-		l := int(math.Pow(float64(toBase), float64(power)))
+		l := CurrentPower(toBase, power)
 		var times int
 		base36 := "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 		for power >= 0 {
 			if l <= num {
-				l = l + int(math.Pow(float64(toBase), float64(power)))
+				l = l + CurrentPower(toBase, power)
 				times++
 			} else {
 				// if toBase >= 10 {
@@ -27,9 +31,9 @@ func fromBase10(num int, toBase int) string {
 				//	   baseB = baseB + fmt.Sprint(times)
 				// }
 				times = 0
-				num = num - (l - int(math.Pow(float64(toBase), float64(power)))) // because we have an extra "int(math.Pow(float64(toBase), float64(power)))" here
+				num = num - (l - CurrentPower(toBase, power)) // because we have an extra "int(math.Pow(float64(toBase), float64(power)))" here
 				power--
-				l = int(math.Pow(float64(toBase), float64(power)))
+				l = CurrentPower(toBase, power)
 
 			}
 		}
